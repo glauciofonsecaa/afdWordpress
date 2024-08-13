@@ -47,7 +47,7 @@ def mountUrifuzz(pwd_count, uri_exploit, file_exploit):
     for pwd in range(pwd_count):
         pwd_tmp += '../'
 
-    pwd_tmp = pwd_tmp[:-1]+file_exploit
+    pwd_tmp = pwd_tmp[:-1] + file_exploit
     uri_exploit_file = uri_exploit.replace('_PWD__FILE_', pwd_tmp)
     return uri_exploit_file
 
@@ -104,13 +104,13 @@ if __name__ == "__main__":
     print(f"{objStyleColor.fg_white}{banner}{objStyleColor.end}")
 
     parser_arg_menu = argparse.ArgumentParser(
-        prog='tool', formatter_class=lambda prog: argparse.HelpFormatter(prog, max_help_position=20))
+        prog='tool', formatter_class = lambda prog: argparse.HelpFormatter(prog, max_help_position = 20))
     parser_arg_menu.add_argument(
-        "--url", help="URL to request Ex: http://www.host.com", metavar="http://url",  required=True)
-    parser_arg_menu.add_argument("--file", help="File to fuzzing Ex: /wp-admin.php",
-                                 metavar="/file.php",  default='/wp-admin.php', required=False)
+        "--url", help = "URL to request Ex: http://www.host.com", metavar = "http://url", required = True)
+    parser_arg_menu.add_argument("--file", help = "File to fuzzing Ex: /wp-admin.php",
+                                 metavar = "/file.php",  default = '/wp-admin.php', required = False)
     parser_arg_menu.add_argument(
-        "--threads", help="Threads", metavar="10", default=5)
+        "--threads", help = "Threads", metavar = "10", default = 5)
     arg_menu = parser_arg_menu.parse_args()
 
     threads = arg_menu.threads
@@ -135,7 +135,7 @@ if __name__ == "__main__":
         pwd_uri_exploit = mountUrifuzz(
             pwd_count, uri_exploit, file_inject_uri_exploit)
 
-        target_uri_exploit = taget_url+pwd_uri_exploit
+        target_uri_exploit = taget_url + pwd_uri_exploit
 
         while threading.active_count() > MAX_CONECTION_THREAD:
             time.sleep(1)
